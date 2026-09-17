@@ -256,6 +256,7 @@ a.tel-link:hover{color:var(--primary)}
 .mm-node img{width:100%;height:auto;display:block;background:var(--bg-soft)}
 .mm-node span{display:block;font-size:12px;font-weight:700;padding:7px 4px;color:var(--muted);text-align:center}
 .proj-tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--grad-soft);color:var(--primary);margin-bottom:10px}
+.proj-sub{margin:0 0 12px;font-size:13.5px;font-weight:700;letter-spacing:.01em;color:var(--primary)}
 /* 项目 · 卡片翻页 */
 .proj-carousel{position:relative;width:100%;max-width:880px;margin:0 auto}
 .proj-stage{position:relative;overflow:hidden}
@@ -1007,6 +1008,52 @@ footer .heart{color:var(--accent-2)}
           { "src": "plane-battle.png", "label": { "zh": "飞机大战", "en": "Plane Battle" } },
           { "src": "tank-battle.png", "label": { "zh": "坦克大战", "en": "Tank Battle" } }
         ]
+      },
+      {
+        "name": { "zh": "互联网+技能应用赛 · 备考题库（AI 答疑助手）", "en": "Internet+ Skills Competition Question Bank (AI Tutor)" },
+        "tag": { "zh": "互联网+", "en": "Internet+" },
+        "stack": ["JavaScript", "Node.js", "DeepSeek API", "提示词工程"],
+        "desc": {
+          "zh": "面向「互联网+技能应用赛」的备考题库：专项训练、题型训练、混合组卷、模拟测试、错题本与成绩记录一站齐全；任意题目都能向 AI 答疑助手追问，结合原题举一反三。为解决浏览器跨域限制，另写了一个本机 Node 中转服务，把追问转发给 DeepSeek 官方接口（仅监听 127.0.0.1）。",
+          "en": "A revision question bank for the Internet+ Skills Competition: focused drills, question-type drills, mixed papers, mock tests, a mistake notebook and score history in one page; any question can be followed up with an AI tutor that reasons from that exact question. A local Node relay forwards those follow-ups to the DeepSeek API to work around browser CORS limits, listening on 127.0.0.1 only."
+        },
+        "result": {
+          "zh": "把「做题 → 错题 → 追问讲解」连成闭环，卡题当场解决。",
+          "en": "Closed the loop from practice to mistakes to explained follow-up, so a stuck question is answered on the spot."
+        },
+        "imgs": [
+          { "src": "question-bank.jpg", "label": { "zh": "题库界面", "en": "Question Bank" } }
+        ]
+      },
+      {
+        "name": { "zh": "综测计算器", "en": "Comprehensive Evaluation Calculator" },
+        "tag": { "zh": "效率工具", "en": "Utility" },
+        "stack": ["JavaScript", "HTML5", "本地存储"],
+        "desc": {
+          "zh": "综合素质测评分项多、权重杂，手算很容易漏掉一项。综测计算器把学业成绩、德育表现、文体活动与社会工作等模块的权重收进同一张表：填入各项得分就实时算出综测总分，还会提示「想再提高 0.5 分，哪一项最值得投入」。让每一分努力都被算清楚，也让方向看得见。",
+          "en": "Comprehensive evaluation has many weighted parts and hand-adding them easily drops a line. This calculator puts academic scores, conduct, sports and arts, and student work into one table: type in each score to get the weighted total instantly, and see which single item is worth the most effort for the next half point. Every bit of effort becomes countable and visible."
+        },
+        "result": {
+          "zh": "把模糊的「我够不够」，变成清晰的「我还差多少」。目标明确，努力有方向。",
+          "en": "Turns a vague \"am I good enough\" into a clear \"how much more do I need\": a defined goal and a direction for the effort."
+        },
+        "imgs": [
+          { "src": "zongce-calculator.png", "label": { "zh": "综测计算器", "en": "Calculator" } }
+        ]
+      },
+      {
+        "name": { "zh": "项目进行中…", "en": "In Progress…" },
+        "subtitle": { "zh": "deepseek harness「悬浮球插件」", "en": "deepseek harness · Floating Ball plugin" },
+        "tag": { "zh": "开发中", "en": "Building" },
+        "stack": ["DeepSeek Harness", "插件开发"],
+        "desc": {
+          "zh": "正在开发基于 deepseek harness 的「悬浮球」插件：把常用功能收进一个常驻桌面的悬浮球，随手呼出、即点即用，减少在窗口之间来回切换的成本。",
+          "en": "Building a floating-ball plugin on deepseek harness: everyday actions live inside one always-on-top ball that can be summoned and used instantly, cutting the cost of switching between windows."
+        },
+        "result": {
+          "zh": "开发中，后续补充演示与说明。",
+          "en": "Still in progress. Demo and write-up to follow."
+        }
       }
     ]
   },
@@ -1245,6 +1292,7 @@ function buildProjectPage(p){
     <div class="proj-card" ${(p.imgs&&p.imgs[0])?`data-preview="${esc(p.imgs[0].src)}" data-preview-label="${esc(t(p.name))}"`:""}>
       ${p.tag?`<span class="proj-tag">${esc(t(p.tag))}</span>`:""}
       <h3 style="margin:0 0 6px;font-size:17px">${esc(t(p.name))}</h3>
+      ${p.subtitle?`<p class="proj-sub">${esc(t(p.subtitle))}</p>`:""}
       <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">${(p.stack||[]).map(s=>`<span class="chip">${esc(s)}</span>`).join("")}</div>
       <p style="margin:0;color:var(--muted);font-size:14.5px">${esc(t(p.desc))}</p>
       ${p.result?`<p style="margin:10px 0 0;font-weight:700;color:var(--primary)">${esc(t(p.result))}</p>`:""}
